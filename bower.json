@@ -1,0 +1,33 @@
+{
+  "name": "stylus-mq",
+  "description": "mq() is a Stylus mixin that helps manipulating media queries in an elegant way.",
+  "keywords": [
+    "responsive",
+    "stylus",
+    "rwd",
+    "mediaquery",
+    "query",
+    "queries",
+    "media"
+  ],
+
+  "main": "mq.styl",
+  "author": "Ardentic",
+
+  "ignore": [
+    "**/.*",
+    "test"
+  ],
+
+  "licenses": [
+    {
+      "type": "Apache-2.0",
+      "url": "http://www.apache.org/licenses/LICENSE-2.0"
+    }
+  ],
+
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ardentic/stylus-mq.git"
+  }
+}

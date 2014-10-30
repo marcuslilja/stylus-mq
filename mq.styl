@@ -1,0 +1,169 @@
+
+// To enable support for browsers that do not support @media queries,
+// (IE <= 8, Firefox <= 3, Opera <= 9) set $mq-responsive to false
+// Create a separate stylesheet served exclusively to these browsers,
+// meaning @media queries will be rasterized, relying on the cascade itself
+mq-responsive ?= true;
+
+// Base font size
+mq-base-font-size ?= 16px;
+
+// Name your breakpoints in a way that creates a ubiquitous language
+// across team members. It will improve communication between
+// stakeholders, designers, developers, and testers.
+mq-breakpoints ?= {
+  tiny: 480px,
+  small: 768px,
+  medium: 992px,
+  large: 1200px
+};
+
+// Define the breakpoint from the $mq-breakpoints list that should
+// be used as the target width when outputting a static stylesheet
+// (i.e. when $mq-responsive is set to 'false').
+mq-static-breakpoint ?= 'desktop';
+
+// If you want to display the currently active breakpoint in the top
+// right corner of your site during development, add the breakpoints
+// to this list, ordered by width, e.g. (mobile, tablet, desktop).
+mq-show-breakpoints ?= ();
+
+mq-px2em(value) {
+  if (unit(value) == em) {
+    return value;
+  }
+
+  return unit(value / mq-base-font-size, em);
+}
+
+mq-get-breakpoint-width(name) {
+  unless (name in mq-breakpoints) {
+    warn('Breakpoint ' + name + ' does not exist');
+  }
+
+  return mq-breakpoints[name];
+}
+
+// Media Query mixin
+// Usage:
+// .element {
+//   +mq(from: 'mobile') {
+//     color: red;
+//   }
+//   +mq(until: 'tablet') {
+//     color: blue;
+//   }
+//   +mq('mobile', 'tablet') {
+//     color: green;
+//   }
+//   +mq(from: 'tablet', extra: '(orientation: landscape)') {
+//     color: teal;
+//   }
+//   +mq(950px) {
+//     color: hotpink;
+//   }
+// }
+
+mq(from = false, until = false, extra = false, to = null) {
+  // Deprecate use of "to" for "until", because "until" implies the exclusive
+  // boundary that is in place, whereas "to" is unclear.
+  if (to) {
+    if(!until) {
+      warn('"to" is deprecated, you should use "until" instead');
+      until = to;
+    } else {
+      warn('You are using "until" and "to" together. "to" is deprecated and has been ignored. You should remove it.');
+    }
+  }
+
+  // Initialize variables
+  min-width = 0;
+  max-width = 0;
+  query = s('all');
+
+  // From: this breakpoint (inclusive)
+  if (from) {
+    if (type(from) == 'unit') {
+      min-width = mq-px2em(from);
+    } else {
+      min-width = mq-px2em(mq-get-breakpoint-width(from));
+    }
+  }
+
+  // Until: that breakpoint (exclusive)
+  if (until) {
+    if (type(until) == 'unit') {
+      max-width = mq-px2em(until);
+    } else {
+      max-width = mq-px2em(mq-get-breakpoint-width(until)) - 0.01em;
+    }
+  }
+
+  // Responsive support is disabled, rasterize the output outside @media blocks
+  // The browser will rely on the cascade itself.
+  if (!mq-responsive) {
+    static-breakpoint-width = mq-get-breakpoint-width(mq-static-breakpoint);
+
+    if (static-breakpoint-width) {
+      target-width = mq-px2em(static-breakpoint-width);
+
+      if (!extra && (min-width <= target-width) && (!until) || (max-width >= target-width)) {
+        {block}
+      }
+    }
+  }
+
+  // Responsive support is enabled, output rules inside @media queries
+  else {
+    if (min-width != 0) {
+      query = s('%s and (min-width: %s)', query, min-width);
+    }
+
+    if (max-width != 0) {
+      query = s('%s and (max-width: %s)', query, max-width);
+    }
+
+    if (extra) {
+      query = s('%s and %s', query, unquote(extra));
+    }
+
+    @media query {
+      {block}
+    }
+  }
+}
+
+// Add a breakpoint
+// Usage: mq-breakpoints = mq-add-breakpoint('tvscreen', 1920px);
+mq-add-breakpoint(name, breakpoint) {
+  new-breakpoint = {};
+  new-breakpoint[name] = breakpoint;
+
+  return merge(mq-breakpoints, new-breakpoint);
+}
+
+// Show the active breakpoint in the top right corner of the viewport
+if (mq-show-breakpoints) {
+  body:before {
+    background-color: #fcf8e3;
+    border-bottom: 1px solid #fbeed5;
+    border-left: 1px solid #fbeed5;
+    color: #c09853;
+    font-family: 'Helvetica Neue', sans-serif;
+    font-size: 12px;
+    padding: 3px 6px;
+    position: absolute;
+    left: 0;
+    top: 0;
+    z-index: 100;
+
+    // Loop through the breakpoints that should be shown
+    for show-breakpoint in mq-show-breakpoints {
+      width = mq-get-breakpoint-width(show-breakpoint);
+
+      +mq(until: show-breakpoint) {
+        content: s('"%s ≤ %s (%s)"', unquote(show-breakpoint), width, mq-px2em(width));
+      }
+    }
+  }
+}
