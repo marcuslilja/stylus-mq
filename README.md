@@ -5,7 +5,7 @@ This is a fork from [https://github.com/guardian/sass-mq](https://github.com/gua
 
 ## How to Use It
 
-1. Install with [Bower](http://bower.io/ "BOWER: A package manager for the web"): `bower install stylus-mq --save-dev` OR [Download mq.styl](https://bitbucket.org/ardentic/ardentic-stylus-mq/raw/master/mq.styl) to your Stylus project.
+1. Install with [Bower](http://bower.io/ "BOWER: A package manager for the web"): `bower install stylus-mq --save-dev` OR [Download mq.styl](https://raw.githubusercontent.com/ardentic/stylus-mq/master/mq.styl) to your Stylus project.
 
 2. Import the partial in your Stylus files and override default settings with your own preferences before the file is imported:
 
