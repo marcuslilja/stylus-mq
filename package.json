@@ -12,6 +12,10 @@
     "queries",
     "media"
   ],
+  "ignore": [
+    "**/.*",
+    "test"
+  ],
   "directories": {
     "test": "test"
   },
