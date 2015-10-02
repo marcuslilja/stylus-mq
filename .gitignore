@@ -1,4 +1,9 @@
-# Numerous always-ignore extensions
+# Folders
+/node_modules
+/bower_components
+/vendor
+
+# Files
 *.diff
 *.err
 *.orig
@@ -8,11 +13,6 @@
 *.swp
 *.vi
 *~
-
-# OS or Editor folders
 .DS_Store
 Thumbs.db
-
-# Libraries
-node_modules
-bower_components
+.env
