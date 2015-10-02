@@ -16,10 +16,20 @@
     "**/.*",
     "test"
   ],
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
   "repository": {
     "type": "git",
-    "url": "https://github.com/ardentic/stylus-mq.git"
+    "url": "git+https://github.com/ardentic/stylus-mq.git"
   },
   "author": "Ardentic",
-  "license": "MIT"
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/ardentic/stylus-mq/issues"
+  },
+  "homepage": "https://github.com/ardentic/stylus-mq#readme"
 }
