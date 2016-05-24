@@ -127,6 +127,13 @@ styles() {
   styles();
 }
 
+.mq-breakpoints-to-json {
+  &:after {
+    display: none;
+    content: mq-breakpoints-to-json();
+  }
+}
+
 // Rasterized styles that span or start at the "desktop" breakpoint
 // (e.g. to serve to IE8 via conditional comments in a separate stylesheet)
 mq-responsive = false;
