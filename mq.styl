@@ -142,6 +142,29 @@ mq-add-breakpoint(name, breakpoint) {
   return merge(mq-breakpoints, new-breakpoint);
 }
 
+// Output breakpoints as json
+// Usage: mq-breakpoints-to-json();
+//
+// body {
+//   &:after {
+//     display: none;
+//     content: mq-breakpoints-to-json();
+//   }
+// }
+mq-breakpoints-to-json() {
+  json = ();
+
+  for key in mq-breakpoints {
+    push(json, s('"%s": ', unquote(key)));
+  }
+
+  for value, index in values(mq-breakpoints) {
+    json[index] = json[index] + s('"%s"', mq-px2em(value));
+  }
+
+  return '{ ' + join(', ', json) + ' }';
+}
+
 // Show the active breakpoint in the top right corner of the viewport
 if (mq-show-breakpoints) {
   body:before {
