@@ -1,9 +1,11 @@
 
+//
 // Base font size on the `<body>` element
+//
 $mq-base-font-size ?= 16px;
 
 // To enable support for browsers that do not support @media queries,
-// (IE <= 8, Firefox <= 3, Opera <= 9) set $mq-responsive to false
+// (IE <= 8, Firefox <= 3, Opera <= 9) set mq-responsive to false
 // Create a separate stylesheet served exclusively to these browsers,
 // meaning @media queries will be rasterized, relying on the cascade itself
 mq-responsive ?= true;
@@ -18,9 +20,9 @@ mq-breakpoints ?= {
   large: 1200px
 };
 
-// Define the breakpoint from the $mq-breakpoints list that should
+// Define the breakpoint from the mq-breakpoints list that should
 // be used as the target width when outputting a static stylesheet
-// (i.e. when $mq-responsive is set to 'false').
+// (i.e. when mq-responsive is set to 'false').
 mq-static-breakpoint ?= 'desktop';
 
 // If you want to display the currently active breakpoint in the top
@@ -43,26 +45,6 @@ mq-get-breakpoint-width(name) {
 
   return mq-breakpoints[name];
 }
-
-// Media Query mixin
-// Usage:
-// .element {
-//   +mq(from: 'mobile') {
-//     color: red;
-//   }
-//   +mq(until: 'tablet') {
-//     color: blue;
-//   }
-//   +mq('mobile', 'tablet') {
-//     color: green;
-//   }
-//   +mq(from: 'tablet', extra: '(orientation: landscape)') {
-//     color: teal;
-//   }
-//   +mq(950px) {
-//     color: hotpink;
-//   }
-// }
 
 mq(from = false, until = false, extra = false, to = null) {
   // Deprecate use of "to" for "until", because "until" implies the exclusive
