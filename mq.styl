@@ -28,12 +28,12 @@ mq-static-breakpoint ?= 'desktop';
 // to this list, ordered by width, e.g. (mobile, tablet, desktop).
 mq-show-breakpoints ?= ();
 
-mq-px2em(value) {
-  if (unit(value) == em) {
-    return value;
+mq-px2em($value) {
+  if (unit($value) == em) {
+    return $value;
   }
 
-  return unit(value / $mq-base-font-size, em);
+  return unit($value / $mq-base-font-size, em);
 }
 
 mq-get-breakpoint-width(name) {
