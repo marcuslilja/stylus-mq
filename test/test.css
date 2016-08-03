@@ -86,6 +86,11 @@ body:before {
     content: "from-desktop";
   }
 }
+@media screen and (min-width: 64em) {
+  .responsive:after {
+    content: "from-desktop";
+  }
+}
 @media all and (max-width: 70em) {
   .responsive:after {
     content: "to-70em";
@@ -139,6 +144,7 @@ body:before {
   content: "from-mobile";
   content: "from-640";
   content: "from-tablet";
+  content: "from-desktop";
   content: "from-desktop";
   content: "to-70em";
   content: "to-1100px";

@@ -52,10 +52,10 @@ mq-get-breakpoint-width($name) {
   return $mq-breakpoints[$name];
 }
 
-mq($from = false, $until = false, $and = false) {
+mq($from = false, $until = false, $and = false, $media-type = 'all') {
   $min-width = 0;
   $max-width = 0;
-  $media-query = s('all');
+  $media-query = s($media-type);
 
   // From: this breakpoint (inclusive)
   if ($from) {

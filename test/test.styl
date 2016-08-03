@@ -70,6 +70,10 @@ styles() {
     content: "from-desktop";
   }
 
+  +mq($from: 'desktop', $media-type: 'screen') {
+    content: "from-desktop";
+  }
+
   // From em value
   +mq($until: 70em) {
     content: "to-70em";
