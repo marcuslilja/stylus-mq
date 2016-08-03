@@ -130,6 +130,48 @@ $mq-base-font-size ?= 16px;
 * **$until:** _exclusive_ `max-width` boundary
 * **$and:** additional custom directives
 
+## Breakpoints as JSON data
+
+To simplify the use of the breakpoint names and widths in JavaScript the data can be converted to JSON data and later read by JavaScript.
+
+To enable using the same breakpoint names and widths in both Stylus and JavaScript the breakpoint data can be converted to JSON.
+
+Example:
+
+```stylus
+body {
+  &:after {
+    display: none;
+    content: mq-breakpoints-to-json();
+  }
+}
+```
+
+Results:
+
+```css
+body:after {
+  display: none;
+  content: '{ "tiny": "30em", "small": "48em", "medium": "62em", "large": "75em" }';
+}
+```
+
+This can be read and parsed with something like this:
+
+```javascript
+var removeQuotes = function (string) {
+  return string.replace(/^['"]+|\s+|\\|(;\s?})+|['"]$/g, '');
+};
+
+var getBreakpoints = function () {
+  var breakpoints = window
+    .getComputedStyle(document.body, ':after')
+    .getPropertyValue('content');
+
+  return JSON.parse(removeQuotes(breakpoints));
+};
+```
+
 ## Adding custom breakpoints
 
 ```stylus
