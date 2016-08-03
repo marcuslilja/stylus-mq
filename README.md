@@ -1,7 +1,7 @@
 
 # Stylus - Media Queries
 
-`stylus-mq` is a simple mixin to ease the use of media queries in [stylus](http://learnboost.github.io/stylus/). A lot of inspiration to this library was gathered from [sass-mq](https://github.com/guardian/sass-mq).
+`stylus-mq` is a simple mixin to ease the use of media queries in [stylus](http://stylus-lang.com/). A lot of inspiration to this library was gathered from [sass-mq](https://github.com/guardian/sass-mq).
 
 ## Installation
 
@@ -20,14 +20,14 @@ Manual installation can be done by downloading [mq.styl](https://raw.githubuserc
 ```stylus
 @import 'mq.styl';
 
-mq-breakpoints = {
+$mq-breakpoints = {
   small: 768px
 };
 
 .className {
   background-color: white;
 
-  +mq(until: 'small') {
+  +mq($until: 'small') {
     background-color: red;
   }
 }
@@ -49,14 +49,14 @@ and generate this:
 
 ## Options
 
-**mq-breakpoints**
+**$mq-breakpoints**
 
 Allows you to override the default named breakpoints.
 
 Example:
 
 ```stylus
-mq-breakpoints = {
+$mq-breakpoints = {
   mobile: 768px,
   tablet: 1024px,
   desktop: 1280px
@@ -66,7 +66,7 @@ mq-breakpoints = {
 Default settings:
 
 ```stylus
-mq-breakpoints ?= {
+$mq-breakpoints ?= {
   tiny: 480px,
   small: 768px,
   medium: 992px,
@@ -74,66 +74,66 @@ mq-breakpoints ?= {
 };
 ```
 
-**mq-responsive**
+**$mq-responsive**
 
 Allows you to create a separate stylesheet for older browsers that don't support media queries.
 
 Example:
 
 ```stylus
-mq-responsive = false;
+$mq-responsive = false;
 ```
 
 Default settings:
 
 ```stylus
-mq-responsive ?= true;
+$mq-responsive ?= true;
 ```
 
-**mq-static-breakpoint**
+**$mq-static-breakpoint**
 
-Breakpoint to be used if `mq-responsive` is set to false.
+Breakpoint to be used if `$mq-responsive` is set to false.
 
 Example:
 
 ```stylus
-mq-static-breakpoint = 'mobile';
+$mq-static-breakpoint = 'mobile';
 ```
 
 Default settings:
 
 ```stylus
-mq-static-breakpoint ?= 'desktop';
+$mq-static-breakpoint ?= 'desktop';
 ```
 
-**mq-base-font-size**
+**$mq-base-font-size**
 
 Base font size to calculate media queries from.
 
 Example:
 
 ```stylus
-mq-base-font-size = 14px;
+$mq-base-font-size = 14px;
 ```
 
 Default settings:
 
 ```stylus
-mq-base-font-size ?= 16px;
+$mq-base-font-size ?= 16px;
 ```
 
 ## Parameters
 
 `mq()` takes up to three optional parameters:
 
-* **from:** _inclusive_ `min-width` boundary
-* **until:** _exclusive_ `max-width` boundary
-* **extra:** additional custom directives
+* **$from:** _inclusive_ `min-width` boundary
+* **$until:** _exclusive_ `max-width` boundary
+* **$and:** additional custom directives
 
 ## Adding custom breakpoints
 
 ```stylus
-mq-breakpoints = mq-add-breakpoint('tvscreen', 1920px);
+$mq-breakpoints = mq-add-breakpoint('tvscreen', 1920px);
 
 .hide-on-tv {
   +mq('tvscreen') {
