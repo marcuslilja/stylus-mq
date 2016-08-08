@@ -132,8 +132,6 @@ $mq-base-font-size ?= 16px;
 
 ## Breakpoints as JSON data
 
-To simplify the use of the breakpoint names and widths in JavaScript the data can be converted to JSON data and later read by JavaScript.
-
 To enable using the same breakpoint names and widths in both Stylus and JavaScript the breakpoint data can be converted to JSON.
 
 Example:
