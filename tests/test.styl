@@ -20,9 +20,9 @@ $mq-show-breakpoints = ('tvscreen' 'widescreen' 'desktop' 'tablet' 'mobile');
 @import 'mq';
 
 styles() {
-  // Up to mobile
+  // Until mobile
   +mq($until: 'mobile') {
-    content: "to-mobile";
+    content: "until-mobile";
   }
 
   // From mobile and up
@@ -30,9 +30,9 @@ styles() {
     content: "from-mobile";
   }
 
-  // From mobile to tablet (exclusive)
+  // From mobile until tablet (exclusive)
   +mq($from: 'mobile', $until: 'tablet') {
-    content: "from-mobile-to-tablet";
+    content: "from-mobile-until-tablet";
   }
 
   // From unitless value
@@ -40,14 +40,14 @@ styles() {
     content: "from-640";
   }
 
-  // Up to tablet
+  // Until tablet
   +mq($until: 'tablet') {
-    content: "to-tablet";
+    content: "until-tablet";
   }
 
   // Combine upper limit and custom directive
   +mq($until: 'tablet', $and: '(orientation: landscape)') {
-    content: "to-tablet-and-orientation-landscape";
+    content: "until-tablet-and-orientation-landscape";
   }
 
   // From tablet and up
@@ -55,14 +55,14 @@ styles() {
     content: "from-tablet";
   }
 
-  // From tablet to desktop (exclusive)
+  // From tablet until desktop (exclusive)
   +mq($from: 'tablet', $until: 'desktop') {
-    content: "from-tablet-to-desktop";
+    content: "from-tablet-until-desktop";
   }
 
   // Combine unitless boundaries and custom directive
   +mq(768, 1023, $and: '(orientation: portrait)') {
-    content: "from-768-to-1023-and-orientation-portrait";
+    content: "from-768-until-1023-and-orientation-portrait";
   }
 
   // From desktop and up
@@ -72,17 +72,17 @@ styles() {
 
   // From em value
   +mq($until: 70em) {
-    content: "to-70em";
+    content: "until-70em";
   }
 
   // To pixel value
   +mq($until: 1100px) {
-    content: "to-1100px";
+    content: "until-1100px";
   }
 
-  // From desktop to widescreen (exclusive)
+  // From desktop until widescreen (exclusive)
   +mq($from: 'desktop', $until: 'widescreen') {
-    content: "from-desktop-to-widescreen";
+    content: "from-desktop-until-widescreen";
   }
 
   // From widescreen and up
@@ -90,9 +90,9 @@ styles() {
     content: "from-widescreen";
   }
 
-  // From widescreen to tvscreen (exclusive)
+  // From widescreen until tvscreen (exclusive)
   +mq($from: 'widescreen', $until: 'tvscreen') {
-    content: "from-widescreen-to-tvscreen";
+    content: "from-widescreen-until-tvscreen";
   }
 
   // From tvscreen and up
@@ -118,7 +118,7 @@ styles() {
   }
 
   +mq($until: 'cinema') {
-    content: "to-cinema";
+    content: "until-cinema";
   }
 }
 
