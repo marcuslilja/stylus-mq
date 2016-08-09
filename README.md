@@ -182,8 +182,16 @@ $mq-breakpoints = mq-add-breakpoint('tvscreen', 1920px);
 }
 ```
 
-## Test
+## Testing
 
-1. cd into the `test` folder
-2. run `stylus test.styl`
-3. if `test.css` hasn’t changed (run a `git diff` on it), tests pass
+Install dependencies.
+
+```
+npm install
+```
+
+Run tests.
+
+```
+npm test
+```
