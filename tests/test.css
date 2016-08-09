@@ -38,12 +38,7 @@ body:before {
 }
 @media all and (max-width: 19.99em) {
   .responsive:after {
-    content: "to-mobile";
-  }
-}
-@media all and (max-width: 19.99em) {
-  .responsive:after {
-    content: "to-mobile";
+    content: "until-mobile";
   }
 }
 @media all and (min-width: 20em) {
@@ -53,7 +48,7 @@ body:before {
 }
 @media all and (min-width: 20em) and (max-width: 39.99em) {
   .responsive:after {
-    content: "from-mobile-to-tablet";
+    content: "from-mobile-until-tablet";
   }
 }
 @media all and (min-width: 40em) {
@@ -63,12 +58,12 @@ body:before {
 }
 @media all and (max-width: 39.99em) {
   .responsive:after {
-    content: "to-tablet";
+    content: "until-tablet";
   }
 }
 @media all and (max-width: 39.99em) and (orientation: landscape) {
   .responsive:after {
-    content: "to-tablet-and-orientation-landscape";
+    content: "until-tablet-and-orientation-landscape";
   }
 }
 @media all and (min-width: 40em) {
@@ -78,12 +73,12 @@ body:before {
 }
 @media all and (min-width: 40em) and (max-width: 63.99em) {
   .responsive:after {
-    content: "from-tablet-to-desktop";
+    content: "from-tablet-until-desktop";
   }
 }
 @media all and (min-width: 48em) and (max-width: 63.9375em) and (orientation: portrait) {
   .responsive:after {
-    content: "from-768-to-1023-and-orientation-portrait";
+    content: "from-768-until-1023-and-orientation-portrait";
   }
 }
 @media all and (min-width: 64em) {
@@ -93,17 +88,17 @@ body:before {
 }
 @media all and (max-width: 70em) {
   .responsive:after {
-    content: "to-70em";
+    content: "until-70em";
   }
 }
 @media all and (max-width: 68.75em) {
   .responsive:after {
-    content: "to-1100px";
+    content: "until-1100px";
   }
 }
 @media all and (min-width: 64em) and (max-width: 74.99em) {
   .responsive:after {
-    content: "from-desktop-to-widescreen";
+    content: "from-desktop-until-widescreen";
   }
 }
 @media all and (min-width: 75em) {
@@ -113,7 +108,7 @@ body:before {
 }
 @media all and (min-width: 75em) and (max-width: 119.99em) {
   .responsive:after {
-    content: "from-widescreen-to-tvscreen";
+    content: "from-widescreen-until-tvscreen";
   }
 }
 @media all and (min-width: 120em) {
@@ -126,6 +121,11 @@ body:before {
     content: "hidpi-screen";
   }
 }
+@media screen and (min-width: 64em) {
+  .responsive:after {
+    content: "media-type-screen";
+  }
+}
 @media all and (min-width: 256em) {
   .responsive:after {
     content: "from-cinema";
@@ -133,21 +133,22 @@ body:before {
 }
 @media all and (max-width: 255.99em) {
   .responsive:after {
-    content: "to-cinema";
+    content: "until-cinema";
   }
-}
-.mq-breakpoints-to-json:after {
-  display: none;
-  content: '{ "mobile": "20em", "tablet": "40em", "desktop": "64em", "widescreen": "75em", "tvscreen": "120em", "mobileLandscape": "30em", "cinema": "256em" }';
 }
 .static:after {
   content: "from-mobile";
   content: "from-640";
   content: "from-tablet";
   content: "from-desktop";
-  content: "to-70em";
-  content: "to-1100px";
-  content: "from-desktop-to-widescreen";
-  content: "from-widescreen-to-tvscreen";
-  content: "to-cinema";
+  content: "until-70em";
+  content: "until-1100px";
+  content: "from-desktop-until-widescreen";
+  content: "from-widescreen-until-tvscreen";
+  content: "media-type-screen";
+  content: "until-cinema";
+}
+.mq-breakpoints-to-json:after {
+  display: none;
+  content: '{ "mobile": "20em", "tablet": "40em", "desktop": "64em", "widescreen": "75em", "tvscreen": "120em", "mobileLandscape": "30em", "cinema": "256em" }';
 }

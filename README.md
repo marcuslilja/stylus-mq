@@ -1,14 +1,14 @@
 
 # Stylus - Media Queries
 
-`stylus-mq` is a simple mixin to ease the use of media queries in [stylus](http://learnboost.github.io/stylus/). A lot of inspiration to this library was gathered from [sass-mq](https://github.com/guardian/sass-mq).
+`stylus-mq` is a simple mixin to ease the use of media queries in [stylus](http://stylus-lang.com/). A lot of inspiration to this library was gathered from [sass-mq](https://github.com/guardian/sass-mq).
 
 ## Installation
 
 With NPM
 
 ```
-npm install --save-dev @ardentic/stylus-mq
+npm install @ardentic/stylus-mq
 ```
 
 Manual installation can be done by downloading [mq.styl](https://raw.githubusercontent.com/ardentic/stylus-mq/master/mq.styl) to your project.
@@ -20,14 +20,14 @@ Manual installation can be done by downloading [mq.styl](https://raw.githubuserc
 ```stylus
 @import 'mq.styl';
 
-mq-breakpoints = {
+$mq-breakpoints = {
   small: 768px
 };
 
 .className {
   background-color: white;
 
-  +mq(until: 'small') {
+  +mq($until: 'small') {
     background-color: red;
   }
 }
@@ -49,14 +49,14 @@ and generate this:
 
 ## Options
 
-**mq-breakpoints**
+**$mq-breakpoints**
 
 Allows you to override the default named breakpoints.
 
 Example:
 
 ```stylus
-mq-breakpoints = {
+$mq-breakpoints = {
   mobile: 768px,
   tablet: 1024px,
   desktop: 1280px
@@ -66,7 +66,7 @@ mq-breakpoints = {
 Default settings:
 
 ```stylus
-mq-breakpoints ?= {
+$mq-breakpoints ?= {
   tiny: 480px,
   small: 768px,
   medium: 992px,
@@ -74,66 +74,106 @@ mq-breakpoints ?= {
 };
 ```
 
-**mq-responsive**
+**$mq-responsive**
 
 Allows you to create a separate stylesheet for older browsers that don't support media queries.
 
 Example:
 
 ```stylus
-mq-responsive = false;
+$mq-responsive = false;
 ```
 
 Default settings:
 
 ```stylus
-mq-responsive ?= true;
+$mq-responsive ?= true;
 ```
 
-**mq-static-breakpoint**
+**$mq-static-breakpoint**
 
-Breakpoint to be used if `mq-responsive` is set to false.
+Breakpoint to be used if `$mq-responsive` is set to false.
 
 Example:
 
 ```stylus
-mq-static-breakpoint = 'mobile';
+$mq-static-breakpoint = 'mobile';
 ```
 
 Default settings:
 
 ```stylus
-mq-static-breakpoint ?= 'desktop';
+$mq-static-breakpoint ?= 'desktop';
 ```
 
-**mq-base-font-size**
+**$mq-base-font-size**
 
 Base font size to calculate media queries from.
 
 Example:
 
 ```stylus
-mq-base-font-size = 14px;
+$mq-base-font-size = 14px;
 ```
 
 Default settings:
 
 ```stylus
-mq-base-font-size ?= 16px;
+$mq-base-font-size ?= 16px;
 ```
 
 ## Parameters
 
 `mq()` takes up to three optional parameters:
 
-* **from:** _inclusive_ `min-width` boundary
-* **until:** _exclusive_ `max-width` boundary
-* **extra:** additional custom directives
+* **$from:** _inclusive_ `min-width` boundary
+* **$until:** _exclusive_ `max-width` boundary
+* **$and:** additional custom directives
+
+## Breakpoints as JSON data
+
+To enable using the same breakpoint names and widths in both Stylus and JavaScript the breakpoint data can be converted to JSON.
+
+Example:
+
+```stylus
+body {
+  &:after {
+    display: none;
+    content: mq-breakpoints-to-json();
+  }
+}
+```
+
+Results:
+
+```css
+body:after {
+  display: none;
+  content: '{ "tiny": "30em", "small": "48em", "medium": "62em", "large": "75em" }';
+}
+```
+
+This can be read and parsed with something like this:
+
+```javascript
+var removeQuotes = function (string) {
+  return string.replace(/^['"]+|\s+|\\|(;\s?})+|['"]$/g, '');
+};
+
+var getBreakpoints = function () {
+  var breakpoints = window
+    .getComputedStyle(document.body, ':after')
+    .getPropertyValue('content');
+
+  return JSON.parse(removeQuotes(breakpoints));
+};
+```
 
 ## Adding custom breakpoints
 
 ```stylus
-mq-breakpoints = mq-add-breakpoint('tvscreen', 1920px);
+$mq-breakpoints = mq-add-breakpoint('tvscreen', 1920px);
 
 .hide-on-tv {
   +mq('tvscreen') {
@@ -142,8 +182,16 @@ mq-breakpoints = mq-add-breakpoint('tvscreen', 1920px);
 }
 ```
 
-## Test
+## Testing
 
-1. cd into the `test` folder
-2. run `stylus test.styl`
-3. if `test.css` hasn’t changed (run a `git diff` on it), tests pass
+Install dependencies.
+
+```
+npm install
+```
+
+Run tests.
+
+```
+npm test
+```
