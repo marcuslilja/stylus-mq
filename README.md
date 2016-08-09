@@ -1,7 +1,7 @@
 
 # Stylus - Media Queries
 
-`stylus-mq` is a simple mixin to ease the use of media queries in [stylus](http://stylus-lang.com/). A lot of inspiration to this library was gathered from [sass-mq](https://github.com/guardian/sass-mq).
+**stylus-mq** is a simple mixin to ease the use of media queries in [stylus](http://stylus-lang.com/). A lot of inspiration to this library was gathered from [sass-mq](https://github.com/guardian/sass-mq).
 
 ## Installation
 
