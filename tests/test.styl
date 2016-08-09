@@ -17,7 +17,7 @@ $mq-breakpoints = {
 $mq-show-breakpoints = ('tvscreen' 'widescreen' 'desktop' 'tablet' 'mobile');
 
 // Include media query handling
-@import '../mq';
+@import 'mq';
 
 styles() {
   // Up to mobile
@@ -70,10 +70,6 @@ styles() {
     content: "from-desktop";
   }
 
-  +mq($from: 'desktop', $media-type: 'screen') {
-    content: "from-desktop";
-  }
-
   // From em value
   +mq($until: 70em) {
     content: "to-70em";
@@ -109,6 +105,11 @@ styles() {
     content: "hidpi-screen";
   }
 
+  // Set @media to screen instead of default
+  +mq($from: 'desktop', $media-type: 'screen') {
+    content: "media-type-screen";
+  }
+
   // Add a custom breakpoint
   $mq-breakpoints = mq-add-breakpoint('cinema', 4096px);
 
@@ -126,13 +127,6 @@ styles() {
   styles();
 }
 
-.mq-breakpoints-to-json {
-  &:after {
-    display: none;
-    content: mq-breakpoints-to-json();
-  }
-}
-
 // Rasterized styles that span or start at the "desktop" breakpoint
 // (e.g. to serve to IE8 via conditional comments in a separate stylesheet)
 $mq-responsive = false;
@@ -140,4 +134,12 @@ $mq-static-breakpoint = 'desktop';
 
 .static:after {
   styles();
+}
+
+// Output breakpoint names and values in json format
+.mq-breakpoints-to-json {
+  &:after {
+    display: none;
+    content: mq-breakpoints-to-json();
+  }
 }

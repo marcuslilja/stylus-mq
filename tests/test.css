@@ -86,11 +86,6 @@ body:before {
     content: "from-desktop";
   }
 }
-@media screen and (min-width: 64em) {
-  .responsive:after {
-    content: "from-desktop";
-  }
-}
 @media all and (max-width: 70em) {
   .responsive:after {
     content: "to-70em";
@@ -126,6 +121,11 @@ body:before {
     content: "hidpi-screen";
   }
 }
+@media screen and (min-width: 64em) {
+  .responsive:after {
+    content: "media-type-screen";
+  }
+}
 @media all and (min-width: 256em) {
   .responsive:after {
     content: "from-cinema";
@@ -136,19 +136,19 @@ body:before {
     content: "to-cinema";
   }
 }
-.mq-breakpoints-to-json:after {
-  display: none;
-  content: '{ "mobile": "20em", "tablet": "40em", "desktop": "64em", "widescreen": "75em", "tvscreen": "120em", "mobileLandscape": "30em", "cinema": "256em" }';
-}
 .static:after {
   content: "from-mobile";
   content: "from-640";
   content: "from-tablet";
   content: "from-desktop";
-  content: "from-desktop";
   content: "to-70em";
   content: "to-1100px";
   content: "from-desktop-to-widescreen";
   content: "from-widescreen-to-tvscreen";
+  content: "media-type-screen";
   content: "to-cinema";
+}
+.mq-breakpoints-to-json:after {
+  display: none;
+  content: '{ "mobile": "20em", "tablet": "40em", "desktop": "64em", "widescreen": "75em", "tvscreen": "120em", "mobileLandscape": "30em", "cinema": "256em" }';
 }

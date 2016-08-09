@@ -20,7 +20,7 @@
     "test": "test"
   },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "mocha --require babel-register tests"
   },
   "repository": {
     "type": "git",
@@ -31,5 +31,10 @@
   "bugs": {
     "url": "https://github.com/ardentic/stylus-mq/issues"
   },
-  "homepage": "https://github.com/ardentic/stylus-mq#readme"
+  "homepage": "https://github.com/ardentic/stylus-mq#readme",
+  "devDependencies": {
+    "babel-register": "6.11.6",
+    "mocha": "3.0.0",
+    "stylus": "0.54.5"
+  }
 }
