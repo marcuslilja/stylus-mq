@@ -14,11 +14,8 @@
   ],
   "ignore": [
     "**/.*",
-    "test"
+    "tests"
   ],
-  "directories": {
-    "test": "test"
-  },
   "scripts": {
     "test": "mocha --require babel-register tests"
   },
