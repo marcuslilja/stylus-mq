@@ -1,6 +1,6 @@
 {
   "name": "@ardentic/stylus-mq",
-  "version": "2.0.0",
+  "version": "2.0.1",
   "description": "mq() is a Stylus mixin that helps manipulating media queries in an elegant way.",
   "main": "mq.styl",
   "keywords": [
