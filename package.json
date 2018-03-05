@@ -1,6 +1,6 @@
 {
-  "name": "@ardentic/stylus-mq",
-  "version": "2.0.0",
+  "name": "stylus-mq",
+  "version": "3.0.0",
   "description": "mq() is a Stylus mixin that helps manipulating media queries in an elegant way.",
   "main": "mq.styl",
   "keywords": [
@@ -21,14 +21,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/ardentic/stylus-mq.git"
+    "url": "git+https://github.com/marcuslilja/stylus-mq.git"
   },
-  "author": "Ardentic",
+  "author": "Marcus Lilja",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/ardentic/stylus-mq/issues"
+    "url": "https://github.com/marcuslilja/stylus-mq/issues"
   },
-  "homepage": "https://github.com/ardentic/stylus-mq#readme",
+  "homepage": "https://github.com/marcuslilja/stylus-mq#readme",
   "devDependencies": {
     "babel-register": "6.11.6",
     "mocha": "3.0.0",

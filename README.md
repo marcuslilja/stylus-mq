@@ -8,10 +8,10 @@
 With NPM
 
 ```
-npm install @ardentic/stylus-mq
+npm install stylus-mq
 ```
 
-Manual installation can be done by downloading [mq.styl](https://raw.githubusercontent.com/ardentic/stylus-mq/master/mq.styl) to your project.
+Manual installation can be done by downloading [mq.styl](https://raw.githubusercontent.com/marcuslilja/stylus-mq/master/mq.styl) to your project.
 
 ## Basic example
 
